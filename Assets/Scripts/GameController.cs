@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour {
 
     public GameObject tutorial;
 
+    public RectTransform gameLibraryHeight;
+
     public Game nextGame { get; set; }
     public Game currentGame { get; set; }
 
@@ -49,6 +51,7 @@ public class GameController : MonoBehaviour {
 	void Start () 
     {
         initializeLibrary();
+        hardDriveGames = new List<HardDriveGameController>();
         restart();
         Time.timeScale = 0f;
 	}
@@ -146,7 +149,11 @@ public class GameController : MonoBehaviour {
 
         lookingForGame = false;
 
-        hardDriveGames = new List<HardDriveGameController>();
+        foreach(HardDriveGameController game in hardDriveGames)
+        {
+            Destroy(game.gameObject);
+        }
+        hardDriveGames.Clear();
         hardDriveFilledSpace = 0;
 
         timeConsumed = 0f;
@@ -155,6 +162,7 @@ public class GameController : MonoBehaviour {
         gameOverScreen.SetActive(false);
         pauseScreen.SetActive(false);
         Time.timeScale = 1f;
+        EventManager.TriggerEvent("Restart");
     }
 
     public void startGame()
@@ -168,15 +176,27 @@ public class GameController : MonoBehaviour {
         gameLibrary = new List<Game>();
         gameLibrary.Add(new Game("Battlefield Frontlines 4", 70));
         gameLibrary.Add(new Game("Bitcher 3", 25));
+        gameLibrary.Add(new Game("Black Desserts Online", 30));
         gameLibrary.Add(new Game("Call of Doodoo: Black Opera 3", 100));
         gameLibrary.Add(new Game("Call of Doodoo: Infinity Wars", 100));
         gameLibrary.Add(new Game("Destineeeee", 50));
+        gameLibrary.Add(new Game("Disrespected", 6));
+        gameLibrary.Add(new Game("Fallout The Game", 25));
+        gameLibrary.Add(new Game("Far Away Cry 3", 10));
         gameLibrary.Add(new Game("Elderly Trolls Online", 80));
         gameLibrary.Add(new Game("Grandiose Theft Auto 5", 65));
+        gameLibrary.Add(new Game("Half-Half Life", 7));
+        gameLibrary.Add(new Game("Justice Causation 3", 50));
+        gameLibrary.Add(new Game("Massive Effect", 10));
+        gameLibrary.Add(new Game("Massive Effect 2", 10));
+        gameLibrary.Add(new Game("Middle of the Earth: Moo Moo", 40));
         gameLibrary.Add(new Game("Near Automation", 50));
         gameLibrary.Add(new Game("New Doom", 70));
+        gameLibrary.Add(new Game("Sleeping Hounds", 17));
         gameLibrary.Add(new Game("Spyrim", 8));
         gameLibrary.Add(new Game("Uncharted Adventures", 60));
+
+        gameLibraryHeight.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameLibrary.Count * 60.0f);
 
         foreach (Game game in gameLibrary)
         {
@@ -256,7 +276,7 @@ public class GameController : MonoBehaviour {
             return false;
         }
 
-        return !controller.downloading || !controller.deleting;
+        return !controller.downloading && !controller.deleting;
     }
 
     public Game getRandomGame()
