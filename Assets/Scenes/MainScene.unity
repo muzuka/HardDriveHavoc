@@ -3404,7 +3404,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1974166307}
   m_FillRect: {fileID: 1441859835}
   m_HandleRect: {fileID: 1974166306}
@@ -3718,6 +3718,7 @@ GameObject:
   - component: {fileID: 1937712988}
   - component: {fileID: 1937712989}
   - component: {fileID: 1937712990}
+  - component: {fileID: 1937712991}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -3769,6 +3770,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1275852387}
   pauseScreen: {fileID: 2053091858}
   tutorial: {fileID: 888842413}
+  gameLibraryHeight: {fileID: 1988987540}
 --- !u!114 &1937712989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3875,6 +3877,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1937712991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1937712986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a9417d4df744eeaabc6807b030e8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1972738467 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224227345135376848, guid: 81889cc5cb1c64ae9afcb7a28b85b556,
@@ -3927,7 +3940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4063,17 +4076,17 @@ Prefab:
     - target: {fileID: 114677015329063230, guid: 0e37af53c1d0d417a8a1bc56d4007756,
         type: 2}
       propertyPath: m_Size
-      value: 0.3581818
+      value: 0.29848486
       objectReference: {fileID: 0}
     - target: {fileID: 114677015329063230, guid: 0e37af53c1d0d417a8a1bc56d4007756,
         type: 2}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224981030959096316, guid: 0e37af53c1d0d417a8a1bc56d4007756,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 463
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 114677015329063230, guid: 0e37af53c1d0d417a8a1bc56d4007756,
         type: 2}
@@ -4133,6 +4146,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e37af53c1d0d417a8a1bc56d4007756, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &1988987540 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224981030959096316, guid: 0e37af53c1d0d417a8a1bc56d4007756,
+    type: 2}
+  m_PrefabInternal: {fileID: 1988987539}
 --- !u!1 &2002318971
 GameObject:
   m_ObjectHideFlags: 0
