@@ -18,27 +18,38 @@ public class GameEntryController : MonoBehaviour {
     bool error;
     float timeConsumed;
 
+    void Awake()
+    {
+        EventManager.StartListening("Restart", restart);
+    }
+
     void Start()
     {
         timeConsumed = 0f;
         downloadButton.onClick.AddListener(() => {
-            if (controller.getGameFromHardDrive(game.name) == null)
+            if (Time.timeScale == 1f)
             {
-                bool downloaded = controller.downloadGame(game);
-                if (downloaded)
+                if (controller.getGameFromHardDrive(game.name) == null)
                 {
-                    GetComponent<Image>().color = downloadedColor;
-                }
-                else 
-                {
-                    GetComponent<Image>().color = errorColor;
-                    error = true;
+                    bool downloaded = controller.downloadGame(game);
+                    if (downloaded)
+                    {
+                        GetComponent<Image>().color = downloadedColor;
+                    }
+                    else
+                    {
+                        GetComponent<Image>().color = errorColor;
+                        error = true;
+                    }
                 }
             }
         });
         deleteButton.onClick.AddListener(() => {
-            controller.deleteGame(game);
-            GetComponent<Image>().color = deletedColor;
+            if (Time.timeScale == 1f)
+            {
+                controller.deleteGame(game);
+                GetComponent<Image>().color = deletedColor;
+            }
         });
     }
 
@@ -54,5 +65,10 @@ public class GameEntryController : MonoBehaviour {
                 GetComponent<Image>().color = deletedColor;
             }
         }
+    }
+
+    void restart()
+    {
+        GetComponent<Image>().color = deletedColor;
     }
 }
